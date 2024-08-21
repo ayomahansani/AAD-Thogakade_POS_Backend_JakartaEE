@@ -71,6 +71,8 @@ public class CustomerController extends HttpServlet {
         } catch (JsonbException e) {
             resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             e.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
     }

@@ -6,6 +6,7 @@ import lk.ijse.thogakade_pos_backend.dto.CustomerDTO;
 import lk.ijse.thogakade_pos_backend.entity.Customer;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 public class CustomerBOImpl implements CustomerBO{
 
@@ -13,9 +14,8 @@ public class CustomerBOImpl implements CustomerBO{
 
 
     @Override
-    public boolean saveCustomer(CustomerDTO customerDTO, Connection connection) {
-        Customer customer = new Customer();
-        customerDAO.save(customer, connection);
-
+    public boolean saveCustomer(CustomerDTO customerDTO, Connection connection) throws SQLException {
+        Customer customer = new Customer(customerDTO.getId(), customerDTO.getName(), customerDTO.getAddress(), customerDTO.getContact());
+        return customerDAO.save(customer, connection);
     }
 }
