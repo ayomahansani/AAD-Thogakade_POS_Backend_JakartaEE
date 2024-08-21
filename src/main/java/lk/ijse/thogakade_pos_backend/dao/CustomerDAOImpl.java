@@ -1,4 +1,4 @@
 package lk.ijse.thogakade_pos_backend.dao;
 
-public class CustomerDAOImpl {
+public class CustomerDAOImpl implements CustomerDAO {
 }
