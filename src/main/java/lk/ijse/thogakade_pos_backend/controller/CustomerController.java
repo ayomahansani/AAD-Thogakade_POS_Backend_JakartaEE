@@ -85,7 +85,7 @@ public class CustomerController extends HttpServlet {
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        if(req.getContentType() == null || req.getContentType().toLowerCase().startsWith("application/json")){
+        if(req.getContentType() == null || !req.getContentType().toLowerCase().startsWith("application/json")){
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
         }
 
@@ -95,6 +95,8 @@ public class CustomerController extends HttpServlet {
         CustomerDTO customerDTO = jsonb.fromJson(req.getReader(), CustomerDTO.class);
 
         try (var writer = resp.getWriter()){
+
+            System.out.println(customerBO.updateCustomer(customerId, customerDTO, connection));
 
             if(customerBO.updateCustomer(customerId, customerDTO, connection)){
                 writer.write("Customer updated successfully...");
@@ -143,7 +145,6 @@ public class CustomerController extends HttpServlet {
         try (var writer = resp.getWriter()){
 
             List<CustomerDTO> customerDTOS = customerBO.getAllCustomers(connection);
-            System.out.println(customerDTOS);
 
             resp.setContentType("application/json");
 
