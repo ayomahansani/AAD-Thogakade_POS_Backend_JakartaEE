@@ -3,13 +3,17 @@ package lk.ijse.thogakade_pos_backend.dao;
 import lk.ijse.thogakade_pos_backend.entity.Customer;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public final class CustomerDAOImpl implements CustomerDAO {
 
     static String SAVE_CUSTOMER = "INSERT INTO Customer (id,name,address,phone) VALUES (?,?,?,?)";
     static String UPDATE_CUSTOMER = "UPDATE Customer SET name=?,address=?,phone=? WHERE id=?";
     static String DELETE_CUSTOMER = "DELETE FROM Customer WHERE id=?";
+    static String GET_CUSTOMER = "SELECT * FROM Customer";
 
     @Override
     public boolean save(Customer customer, Connection connection) throws SQLException {
@@ -47,5 +51,29 @@ public final class CustomerDAOImpl implements CustomerDAO {
         ps.setString(1, customerId);
 
         return ps.executeUpdate() != 0;
+    }
+
+    @Override
+    public List<Customer> get(Connection connection) throws SQLException {
+
+        List<Customer> customers = new ArrayList<>();
+
+        var ps = connection.prepareStatement(GET_CUSTOMER);
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+
+            Customer customer = new Customer();
+
+            customer.setId(rs.getString("id"));
+            customer.setName(rs.getString("name"));
+            customer.setAddress(rs.getString("address"));
+            customer.setPhone(rs.getString("phone"));
+
+            customers.add(customer);
+        }
+
+        return customers;
     }
 }

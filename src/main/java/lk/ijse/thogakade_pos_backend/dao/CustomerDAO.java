@@ -4,6 +4,7 @@ import lk.ijse.thogakade_pos_backend.entity.Customer;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 public interface CustomerDAO {
 
@@ -13,4 +14,5 @@ public interface CustomerDAO {
 
     boolean delete(String customerId, Connection connection) throws SQLException;
 
+    List<Customer> get(Connection connection) throws SQLException;
 }

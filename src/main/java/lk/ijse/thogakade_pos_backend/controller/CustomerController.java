@@ -19,6 +19,7 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 
 @WebServlet(urlPatterns = "/customer")
@@ -132,5 +133,28 @@ public class CustomerController extends HttpServlet {
             resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             throw new RuntimeException(e);
         }
+    }
+
+
+    // get all customers
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        try (var writer = resp.getWriter()){
+
+            List<CustomerDTO> customerDTOS = customerBO.getAllCustomers(connection);
+            System.out.println(customerDTOS);
+
+            resp.setContentType("application/json");
+
+            Jsonb jsonb = JsonbBuilder.create();
+
+            // Serialization
+            jsonb.toJson(customerDTOS, writer);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
