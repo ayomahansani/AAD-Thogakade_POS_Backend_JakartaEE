@@ -88,14 +88,14 @@ public class CustomerController extends HttpServlet {
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
         }
 
-        var studentId = req.getParameter("id");
+        var customerId = req.getParameter("id");
 
         Jsonb jsonb = JsonbBuilder.create();
         CustomerDTO customerDTO = jsonb.fromJson(req.getReader(), CustomerDTO.class);
 
         try (var writer = resp.getWriter()){
 
-            if(customerBO.updateCustomer(studentId, customerDTO, connection)){
+            if(customerBO.updateCustomer(customerId, customerDTO, connection)){
                 writer.write("Customer updated successfully...");
                 resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
             } else {
@@ -113,21 +113,18 @@ public class CustomerController extends HttpServlet {
 
 
     // delete customer
-
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        var customerId = req.getParameter("id");
+
         try(var writer = resp.getWriter()) {
 
-            var studentId = req.getParameter("id");
-
-            if(studentBO.deleteStudent(studentId, connection)){
-                System.out.println("Student deleted successfully");
-                writer.write("Student deleted successfully");
+            if(customerBO.deleteCustomer(customerId, connection)){
+                writer.write("Customer deleted successfully...");
                 resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
             }else {
-                System.out.println("Student delete failed");
-                writer.write("Student delete failed");
+                writer.write("Customer not deleted...");
                 resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
             }
 

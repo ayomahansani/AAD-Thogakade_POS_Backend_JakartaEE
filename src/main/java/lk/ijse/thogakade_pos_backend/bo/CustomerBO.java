@@ -9,4 +9,7 @@ public interface CustomerBO {
 
     boolean saveCustomer(CustomerDTO customerDTO, Connection connection) throws SQLException;
 
+    boolean updateCustomer(String customerId, CustomerDTO customerDTO, Connection connection) throws SQLException;
+
+    boolean deleteCustomer(String customerId, Connection connection) throws SQLException;
 }

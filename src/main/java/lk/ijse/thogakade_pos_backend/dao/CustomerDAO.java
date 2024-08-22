@@ -8,4 +8,9 @@ import java.sql.SQLException;
 public interface CustomerDAO {
 
     boolean save(Customer customer, Connection connection) throws SQLException;
+
+    boolean update(String customerId, Customer customer, Connection connection) throws SQLException;
+
+    boolean delete(String customerId, Connection connection) throws SQLException;
+
 }
