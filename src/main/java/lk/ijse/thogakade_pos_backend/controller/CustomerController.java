@@ -1,5 +1,6 @@
 package lk.ijse.thogakade_pos_backend.controller;
 
+import jakarta.json.JsonException;
 import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;
 import jakarta.json.bind.JsonbException;
@@ -65,6 +66,7 @@ public class CustomerController extends HttpServlet {
                 writer.write("Customer saved successfully...");
                 resp.setStatus(HttpServletResponse.SC_CREATED);
             } else {
+                writer.write("Customer not saved...");
                 resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             }
 
@@ -72,9 +74,66 @@ public class CustomerController extends HttpServlet {
             resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             e.printStackTrace();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
     }
 
+
+    // update customer
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        if(req.getContentType() == null || req.getContentType().toLowerCase().startsWith("application/json")){
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+        }
+
+        var studentId = req.getParameter("id");
+
+        Jsonb jsonb = JsonbBuilder.create();
+        CustomerDTO customerDTO = jsonb.fromJson(req.getReader(), CustomerDTO.class);
+
+        try (var writer = resp.getWriter()){
+
+            if(customerBO.updateCustomer(studentId, customerDTO, connection)){
+                writer.write("Customer updated successfully...");
+                resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
+            } else {
+                writer.write("Customer not updated...");
+                resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            }
+        } catch (JsonException e) {
+            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    // delete customer
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        try(var writer = resp.getWriter()) {
+
+            var studentId = req.getParameter("id");
+
+            if(studentBO.deleteStudent(studentId, connection)){
+                System.out.println("Student deleted successfully");
+                writer.write("Student deleted successfully");
+                resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
+            }else {
+                System.out.println("Student delete failed");
+                writer.write("Student delete failed");
+                resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            }
+
+        } catch (Exception e) {
+            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            throw new RuntimeException(e);
+        }
+    }
 }
