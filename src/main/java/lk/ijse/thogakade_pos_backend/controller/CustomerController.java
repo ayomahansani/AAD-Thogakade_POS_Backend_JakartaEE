@@ -96,8 +96,6 @@ public class CustomerController extends HttpServlet {
 
         try (var writer = resp.getWriter()){
 
-            System.out.println(customerBO.updateCustomer(customerId, customerDTO, connection));
-
             if(customerBO.updateCustomer(customerId, customerDTO, connection)){
                 writer.write("Customer updated successfully...");
                 resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
