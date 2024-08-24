@@ -1,18 +1,17 @@
 package lk.ijse.thogakade_pos_backend.dao.custom;
 
+import lk.ijse.thogakade_pos_backend.dao.CrudDAO;
 import lk.ijse.thogakade_pos_backend.entity.Item;
 
-import javax.naming.NamingException;
-import java.sql.SQLException;
-import java.util.List;
 
-public interface ItemDAO {
+public interface ItemDAO extends CrudDAO<Item> {
 
-    boolean save(Item item) throws SQLException, NamingException;
+    /*boolean save(Item item) throws SQLException, NamingException;
 
     boolean update(String itemCode, Item item) throws SQLException, NamingException;
 
     boolean delete(String itemCode) throws SQLException, NamingException;
 
-    List<Item> getAll() throws SQLException, NamingException;
+    List<Item> getAll() throws SQLException, NamingException;*/
+
 }
