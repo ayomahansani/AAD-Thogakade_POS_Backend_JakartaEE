@@ -14,5 +14,5 @@ public interface ItemDAO {
 
     boolean delete(String itemCode) throws SQLException, NamingException;
 
-    List<Item> get() throws SQLException, NamingException;
+    List<Item> getAll() throws SQLException, NamingException;
 }

@@ -20,29 +20,11 @@ public final class ItemDAOImpl implements ItemDAO {
     @Override
     public boolean save(Item item) throws SQLException, NamingException {
 
-        /*var ps = connection.prepareStatement(SAVE_ITEM);
-
-        ps.setString(1, item.getCode());
-        ps.setString(2, item.getName());
-        ps.setString(3, String.valueOf(item.getPrice()));
-        ps.setString(4, String.valueOf(item.getQty()));
-
-        return ps.executeUpdate() != 0;*/
-
         return SQLUtil.execute(SAVE_ITEM, item.getCode(), item.getName(), item.getPrice(), item.getQty());
     }
 
     @Override
     public boolean update(String itemCode, Item item) throws SQLException, NamingException {
-
-        /*var ps = connection.prepareStatement(UPDATE_ITEM);
-
-        ps.setString(1, item.getName());
-        ps.setString(2, String.valueOf(item.getPrice()));
-        ps.setString(3, String.valueOf(item.getQty()));
-        ps.setString(4, itemCode);
-
-        return ps.executeUpdate() != 0;*/
 
         return SQLUtil.execute(UPDATE_ITEM, item.getName(), item.getPrice(), item.getQty(), itemCode);
     }
@@ -50,21 +32,11 @@ public final class ItemDAOImpl implements ItemDAO {
     @Override
     public boolean delete(String itemCode) throws SQLException, NamingException {
 
-        /*var ps = connection.prepareStatement(DELETE_ITEM);
-
-        ps.setString(1, itemCode);
-
-        return ps.executeUpdate() != 0;*/
-
         return SQLUtil.execute(DELETE_ITEM, itemCode);
     }
 
     @Override
-    public List<Item> get() throws SQLException, NamingException {
-
-        /*List<Item> items = new ArrayList<>();
-
-        var ps = connection.prepareStatement(GET_ITEM);*/
+    public List<Item> getAll() throws SQLException, NamingException {
 
         ResultSet rs = SQLUtil.execute(GET_ITEM);
 

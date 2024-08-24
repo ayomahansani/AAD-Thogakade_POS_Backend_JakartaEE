@@ -12,10 +12,12 @@ import java.util.List;
 
 public final class CustomerDAOImpl implements CustomerDAO {
 
+
     static String SAVE_CUSTOMER = "INSERT INTO Customer (id,name,address,phone) VALUES (?,?,?,?)";
     static String UPDATE_CUSTOMER = "UPDATE Customer SET name=?,address=?,phone=? WHERE id=?";
     static String DELETE_CUSTOMER = "DELETE FROM Customer WHERE id=?";
     static String GET_CUSTOMER = "SELECT * FROM Customer";
+
 
     @Override
     public boolean save(Customer customer) throws SQLException, NamingException {
@@ -27,15 +29,6 @@ public final class CustomerDAOImpl implements CustomerDAO {
     @Override
     public boolean update(String customerId, Customer customer) throws SQLException, NamingException {
 
-        /*var ps = connection.prepareStatement(UPDATE_CUSTOMER);
-
-        ps.setString(1, customer.getName());
-        ps.setString(2, customer.getAddress());
-        ps.setString(3, customer.getPhone());
-        ps.setString(4, customerId);
-
-        return ps.executeUpdate() != 0;*/
-
         return SQLUtil.execute(UPDATE_CUSTOMER, customer.getName(), customer.getAddress(), customer.getPhone(), customerId);
 
     }
@@ -43,21 +36,11 @@ public final class CustomerDAOImpl implements CustomerDAO {
     @Override
     public boolean delete(String customerId) throws SQLException, NamingException {
 
-        /*var ps = connection.prepareStatement(DELETE_CUSTOMER);
-
-        ps.setString(1, customerId);
-
-        return ps.executeUpdate() != 0;*/
-
         return SQLUtil.execute(DELETE_CUSTOMER, customerId);
     }
 
     @Override
-    public List<Customer> get() throws SQLException, NamingException {
-
-        /*List<Customer> customers = new ArrayList<>();
-
-        var ps = connection.prepareStatement(GET_CUSTOMER);*/
+    public List<Customer> getAll() throws SQLException, NamingException {
 
         ResultSet rs = SQLUtil.execute(GET_CUSTOMER);
 

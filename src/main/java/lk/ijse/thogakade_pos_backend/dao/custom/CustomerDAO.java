@@ -14,6 +14,6 @@ public interface CustomerDAO {
 
     boolean delete(String customerId) throws SQLException, NamingException;
 
-    List<Customer> get() throws SQLException, NamingException;
+    List<Customer> getAll() throws SQLException, NamingException;
 
 }

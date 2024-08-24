@@ -35,7 +35,7 @@ public class ItemBOImpl implements ItemBO {
     @Override
     public List<ItemDTO> getAllItems() throws SQLException, NamingException {
 
-        List<Item> items = itemDAO.get();
+        List<Item> items = itemDAO.getAll();
         List<ItemDTO> itemDTOS = new ArrayList<>();
 
         for (Item item : items) {

@@ -39,7 +39,7 @@ public class CustomerBOImpl implements CustomerBO {
     @Override
     public List<CustomerDTO> getAllCustomers() throws SQLException, NamingException {
 
-        List<Customer> customers = customerDAO.get();
+        List<Customer> customers = customerDAO.getAll();
         List<CustomerDTO> customerDTOS = new ArrayList<>();
 
         for (Customer customer : customers) {
