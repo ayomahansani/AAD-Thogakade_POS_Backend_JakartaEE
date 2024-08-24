@@ -1,4 +1,6 @@
 package lk.ijse.thogakade_pos_backend.controller;
 
-public class OrderController {
+import jakarta.servlet.http.HttpServlet;
+
+public class OrderController extends HttpServlet {
 }
