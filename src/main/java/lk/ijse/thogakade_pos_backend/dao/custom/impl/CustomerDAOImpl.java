@@ -1,7 +1,10 @@
-package lk.ijse.thogakade_pos_backend.dao;
+package lk.ijse.thogakade_pos_backend.dao.custom.impl;
 
+import lk.ijse.thogakade_pos_backend.dao.SQLUtil;
+import lk.ijse.thogakade_pos_backend.dao.custom.CustomerDAO;
 import lk.ijse.thogakade_pos_backend.entity.Customer;
 
+import javax.naming.NamingException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,41 +19,47 @@ public final class CustomerDAOImpl implements CustomerDAO {
     static String GET_CUSTOMER = "SELECT * FROM Customer";
 
     @Override
-    public boolean save(Customer customer, Connection connection) throws SQLException {
+    public boolean save(Customer customer, Connection connection) throws SQLException, NamingException {
 
-        var ps = connection.prepareStatement(SAVE_CUSTOMER);
+        /*var ps = connection.prepareStatement(SAVE_CUSTOMER);
 
         ps.setString(1, customer.getId());
         ps.setString(2, customer.getName());
         ps.setString(3, customer.getAddress());
         ps.setString(4, customer.getPhone());
 
-        return ps.executeUpdate() != 0;
+        return ps.executeUpdate() != 0;*/
+
+        return SQLUtil.execute(SAVE_CUSTOMER, customer.getId(),customer.getName(), customer.getAddress(), customer.getPhone());
 
     }
 
     @Override
-    public boolean update(String customerId, Customer customer, Connection connection) throws SQLException {
+    public boolean update(String customerId, Customer customer, Connection connection) throws SQLException, NamingException {
 
-        var ps = connection.prepareStatement(UPDATE_CUSTOMER);
+        /*var ps = connection.prepareStatement(UPDATE_CUSTOMER);
 
         ps.setString(1, customer.getName());
         ps.setString(2, customer.getAddress());
         ps.setString(3, customer.getPhone());
         ps.setString(4, customerId);
 
-        return ps.executeUpdate() != 0;
+        return ps.executeUpdate() != 0;*/
+
+        return SQLUtil.execute(UPDATE_CUSTOMER, customer.getName(), customer.getAddress(), customer.getPhone(), customerId);
 
     }
 
     @Override
-    public boolean delete(String customerId, Connection connection) throws SQLException {
+    public boolean delete(String customerId, Connection connection) throws SQLException, NamingException {
 
-        var ps = connection.prepareStatement(DELETE_CUSTOMER);
+        /*var ps = connection.prepareStatement(DELETE_CUSTOMER);
 
         ps.setString(1, customerId);
 
-        return ps.executeUpdate() != 0;
+        return ps.executeUpdate() != 0;*/
+
+        return SQLUtil.execute(DELETE_CUSTOMER, customerId);
     }
 
     @Override

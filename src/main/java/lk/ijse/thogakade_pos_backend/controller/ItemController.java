@@ -9,14 +9,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lk.ijse.thogakade_pos_backend.bo.ItemBO;
-import lk.ijse.thogakade_pos_backend.bo.ItemBOImpl;
+import lk.ijse.thogakade_pos_backend.bo.custom.ItemBO;
+import lk.ijse.thogakade_pos_backend.bo.custom.impl.ItemBOImpl;
 import lk.ijse.thogakade_pos_backend.db.DbConnection;
 import lk.ijse.thogakade_pos_backend.dto.ItemDTO;
 
-import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;

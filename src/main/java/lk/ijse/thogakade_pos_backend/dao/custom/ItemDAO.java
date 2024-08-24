@@ -1,4 +1,4 @@
-package lk.ijse.thogakade_pos_backend.dao;
+package lk.ijse.thogakade_pos_backend.dao.custom;
 
 import lk.ijse.thogakade_pos_backend.entity.Item;
 

@@ -1,5 +1,6 @@
-package lk.ijse.thogakade_pos_backend.dao;
+package lk.ijse.thogakade_pos_backend.dao.custom.impl;
 
+import lk.ijse.thogakade_pos_backend.dao.custom.ItemDAO;
 import lk.ijse.thogakade_pos_backend.entity.Item;
 
 import java.sql.Connection;
