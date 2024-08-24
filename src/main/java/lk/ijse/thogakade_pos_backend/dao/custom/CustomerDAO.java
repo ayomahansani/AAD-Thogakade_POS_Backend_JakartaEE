@@ -9,12 +9,12 @@ import java.util.List;
 
 public interface CustomerDAO {
 
-    boolean save(Customer customer, Connection connection) throws SQLException, NamingException;
+    boolean save(Customer customer) throws SQLException, NamingException;
 
-    boolean update(String customerId, Customer customer, Connection connection) throws SQLException, NamingException;
+    boolean update(String customerId, Customer customer) throws SQLException, NamingException;
 
-    boolean delete(String customerId, Connection connection) throws SQLException, NamingException;
+    boolean delete(String customerId) throws SQLException, NamingException;
 
-    List<Customer> get(Connection connection) throws SQLException;
+    List<Customer> get() throws SQLException, NamingException;
 
 }

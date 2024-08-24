@@ -1,8 +1,10 @@
 package lk.ijse.thogakade_pos_backend.dao.custom.impl;
 
+import lk.ijse.thogakade_pos_backend.dao.SQLUtil;
 import lk.ijse.thogakade_pos_backend.dao.custom.ItemDAO;
 import lk.ijse.thogakade_pos_backend.entity.Item;
 
+import javax.naming.NamingException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,16 +19,18 @@ public final class ItemDAOImpl implements ItemDAO {
     static String GET_ITEM = "SELECT * FROM Item";
 
     @Override
-    public boolean save(Item item, Connection connection) throws SQLException {
+    public boolean save(Item item, Connection connection) throws SQLException, NamingException {
 
-        var ps = connection.prepareStatement(SAVE_ITEM);
+        /*var ps = connection.prepareStatement(SAVE_ITEM);
 
         ps.setString(1, item.getCode());
         ps.setString(2, item.getName());
         ps.setString(3, String.valueOf(item.getPrice()));
         ps.setString(4, String.valueOf(item.getQty()));
 
-        return ps.executeUpdate() != 0;
+        return ps.executeUpdate() != 0;*/
+
+        return SQLUtil.execute(SAVE_ITEM, item.getCode(), item.getName(), item.getPrice(), item.getQty());
     }
 
     @Override

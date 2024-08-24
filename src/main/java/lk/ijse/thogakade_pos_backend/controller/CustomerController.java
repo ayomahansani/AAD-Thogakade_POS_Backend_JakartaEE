@@ -11,12 +11,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lk.ijse.thogakade_pos_backend.bo.custom.CustomerBO;
 import lk.ijse.thogakade_pos_backend.bo.custom.impl.CustomerBOImpl;
-import lk.ijse.thogakade_pos_backend.db.DbConnection;
 import lk.ijse.thogakade_pos_backend.dto.CustomerDTO;
 
 import javax.naming.NamingException;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -24,26 +22,7 @@ import java.util.List;
 @WebServlet(urlPatterns = "/customer")
 public class CustomerController extends HttpServlet {
 
-
-    Connection connection;
-
     private CustomerBO customerBO = new CustomerBOImpl();
-
-
-
-    @Override
-    public void init() throws ServletException {
-
-        // get instance of a db connection
-        try {
-
-            connection = DbConnection.getInstance().getConnection();
-
-        } catch (NamingException | SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
 
 
     // save customer
@@ -59,7 +38,7 @@ public class CustomerController extends HttpServlet {
 
         try (var writer = resp.getWriter()){
 
-            if(customerBO.saveCustomer(customerDTO, connection)){
+            if(customerBO.saveCustomer(customerDTO)){
                 writer.write("Customer saved successfully...");
                 resp.setStatus(HttpServletResponse.SC_CREATED);
             } else {
@@ -71,6 +50,8 @@ public class CustomerController extends HttpServlet {
             resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             e.printStackTrace();
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (NamingException e) {
             e.printStackTrace();
         }
 
@@ -92,7 +73,7 @@ public class CustomerController extends HttpServlet {
 
         try (var writer = resp.getWriter()){
 
-            if(customerBO.updateCustomer(customerId, customerDTO, connection)){
+            if(customerBO.updateCustomer(customerId, customerDTO)){
                 writer.write("Customer updated successfully...");
                 resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
             } else {
@@ -103,6 +84,8 @@ public class CustomerController extends HttpServlet {
             resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             e.printStackTrace();
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (NamingException e) {
             e.printStackTrace();
         }
 
@@ -117,7 +100,7 @@ public class CustomerController extends HttpServlet {
 
         try(var writer = resp.getWriter()) {
 
-            if(customerBO.deleteCustomer(customerId, connection)){
+            if(customerBO.deleteCustomer(customerId)){
                 writer.write("Customer deleted successfully...");
                 resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
             }else {
@@ -138,7 +121,7 @@ public class CustomerController extends HttpServlet {
 
         try (var writer = resp.getWriter()){
 
-            List<CustomerDTO> customerDTOS = customerBO.getAllCustomers(connection);
+            List<CustomerDTO> customerDTOS = customerBO.getAllCustomers();
 
             resp.setContentType("application/json");
 
@@ -148,7 +131,9 @@ public class CustomerController extends HttpServlet {
             jsonb.toJson(customerDTOS, writer);
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+        } catch (NamingException e) {
+            e.printStackTrace();
         }
 
     }

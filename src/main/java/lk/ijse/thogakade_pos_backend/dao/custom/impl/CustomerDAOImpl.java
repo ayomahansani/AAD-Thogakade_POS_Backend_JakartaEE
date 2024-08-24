@@ -19,7 +19,7 @@ public final class CustomerDAOImpl implements CustomerDAO {
     static String GET_CUSTOMER = "SELECT * FROM Customer";
 
     @Override
-    public boolean save(Customer customer, Connection connection) throws SQLException, NamingException {
+    public boolean save(Customer customer) throws SQLException, NamingException {
 
         /*var ps = connection.prepareStatement(SAVE_CUSTOMER);
 
@@ -35,7 +35,7 @@ public final class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public boolean update(String customerId, Customer customer, Connection connection) throws SQLException, NamingException {
+    public boolean update(String customerId, Customer customer) throws SQLException, NamingException {
 
         /*var ps = connection.prepareStatement(UPDATE_CUSTOMER);
 
@@ -51,7 +51,7 @@ public final class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public boolean delete(String customerId, Connection connection) throws SQLException, NamingException {
+    public boolean delete(String customerId) throws SQLException, NamingException {
 
         /*var ps = connection.prepareStatement(DELETE_CUSTOMER);
 
@@ -63,13 +63,15 @@ public final class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public List<Customer> get(Connection connection) throws SQLException {
+    public List<Customer> get() throws SQLException, NamingException {
+
+        /*List<Customer> customers = new ArrayList<>();
+
+        var ps = connection.prepareStatement(GET_CUSTOMER);*/
+
+        ResultSet rs = SQLUtil.execute(GET_CUSTOMER);
 
         List<Customer> customers = new ArrayList<>();
-
-        var ps = connection.prepareStatement(GET_CUSTOMER);
-
-        ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
 
