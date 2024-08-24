@@ -11,7 +11,7 @@ public interface ItemDAO {
 
     boolean save(Item item, Connection connection) throws SQLException, NamingException;
 
-    boolean update(String itemCode, Item item, Connection connection) throws SQLException;
+    boolean update(String itemCode, Item item, Connection connection) throws SQLException, NamingException;
 
     boolean delete(String itemCode, Connection connection) throws SQLException;
 

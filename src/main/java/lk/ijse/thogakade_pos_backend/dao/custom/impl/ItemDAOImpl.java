@@ -34,16 +34,18 @@ public final class ItemDAOImpl implements ItemDAO {
     }
 
     @Override
-    public boolean update(String itemCode, Item item, Connection connection) throws SQLException {
+    public boolean update(String itemCode, Item item, Connection connection) throws SQLException, NamingException {
 
-        var ps = connection.prepareStatement(UPDATE_ITEM);
+        /*var ps = connection.prepareStatement(UPDATE_ITEM);
 
         ps.setString(1, item.getName());
         ps.setString(2, String.valueOf(item.getPrice()));
         ps.setString(3, String.valueOf(item.getQty()));
         ps.setString(4, itemCode);
 
-        return ps.executeUpdate() != 0;
+        return ps.executeUpdate() != 0;*/
+
+        return SQLUtil.execute(UPDATE_ITEM, item.getName(), item.getPrice(), item.getQty(), itemCode);
     }
 
     @Override
