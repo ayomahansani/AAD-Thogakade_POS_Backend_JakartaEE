@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lk.ijse.thogakade_pos_backend.bo.CustomerBO;
 import lk.ijse.thogakade_pos_backend.bo.CustomerBOImpl;
+import lk.ijse.thogakade_pos_backend.db.DbConnection;
 import lk.ijse.thogakade_pos_backend.dto.CustomerDTO;
 
 import javax.naming.InitialContext;
@@ -35,13 +36,10 @@ public class CustomerController extends HttpServlet {
     @Override
     public void init() throws ServletException {
 
-        // create a connection
+        // get instance of a db connection
         try {
 
-            var connectionSpace  = new InitialContext();
-            DataSource pool = (DataSource) connectionSpace.lookup("java:comp/env/jdbc/thogakadeConnectionPool");
-            this.connection = pool.getConnection();
-            System.out.println("Connection created");
+            connection = DbConnection.getInstance().getConnection();
 
         } catch (NamingException | SQLException e) {
             e.printStackTrace();
