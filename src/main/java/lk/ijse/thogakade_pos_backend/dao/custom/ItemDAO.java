@@ -9,11 +9,11 @@ import java.util.List;
 
 public interface ItemDAO {
 
-    boolean save(Item item, Connection connection) throws SQLException, NamingException;
+    boolean save(Item item) throws SQLException, NamingException;
 
-    boolean update(String itemCode, Item item, Connection connection) throws SQLException, NamingException;
+    boolean update(String itemCode, Item item) throws SQLException, NamingException;
 
-    boolean delete(String itemCode, Connection connection) throws SQLException, NamingException;
+    boolean delete(String itemCode) throws SQLException, NamingException;
 
-    List<Item> get(Connection connection) throws SQLException, NamingException;
+    List<Item> get() throws SQLException, NamingException;
 }

@@ -19,7 +19,7 @@ public final class ItemDAOImpl implements ItemDAO {
     static String GET_ITEM = "SELECT * FROM Item";
 
     @Override
-    public boolean save(Item item, Connection connection) throws SQLException, NamingException {
+    public boolean save(Item item) throws SQLException, NamingException {
 
         /*var ps = connection.prepareStatement(SAVE_ITEM);
 
@@ -34,7 +34,7 @@ public final class ItemDAOImpl implements ItemDAO {
     }
 
     @Override
-    public boolean update(String itemCode, Item item, Connection connection) throws SQLException, NamingException {
+    public boolean update(String itemCode, Item item) throws SQLException, NamingException {
 
         /*var ps = connection.prepareStatement(UPDATE_ITEM);
 
@@ -49,7 +49,7 @@ public final class ItemDAOImpl implements ItemDAO {
     }
 
     @Override
-    public boolean delete(String itemCode, Connection connection) throws SQLException, NamingException {
+    public boolean delete(String itemCode) throws SQLException, NamingException {
 
         /*var ps = connection.prepareStatement(DELETE_ITEM);
 
@@ -61,7 +61,7 @@ public final class ItemDAOImpl implements ItemDAO {
     }
 
     @Override
-    public List<Item> get(Connection connection) throws SQLException, NamingException {
+    public List<Item> get() throws SQLException, NamingException {
 
         /*List<Item> items = new ArrayList<>();
 

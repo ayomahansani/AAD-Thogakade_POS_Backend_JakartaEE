@@ -6,6 +6,7 @@ import lk.ijse.thogakade_pos_backend.dao.custom.impl.ItemDAOImpl;
 import lk.ijse.thogakade_pos_backend.dto.ItemDTO;
 import lk.ijse.thogakade_pos_backend.entity.Item;
 
+import javax.naming.NamingException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,26 +17,26 @@ public class ItemBOImpl implements ItemBO {
     private ItemDAO itemDAO = new ItemDAOImpl();
 
     @Override
-    public boolean saveItem(ItemDTO itemDTO, Connection connection) throws SQLException {
+    public boolean saveItem(ItemDTO itemDTO) throws SQLException, NamingException {
         Item item = new Item(itemDTO.getCode(), itemDTO.getName(), itemDTO.getPrice(), itemDTO.getQty());
-        return itemDAO.save(item, connection);
+        return itemDAO.save(item);
     }
 
     @Override
-    public boolean updateItem(String itemCode, ItemDTO itemDTO, Connection connection) throws SQLException {
+    public boolean updateItem(String itemCode, ItemDTO itemDTO) throws SQLException, NamingException {
         Item item = new Item(itemDTO.getCode(), itemDTO.getName(), itemDTO.getPrice(), itemDTO.getQty());
-        return itemDAO.update(itemCode, item, connection);
+        return itemDAO.update(itemCode, item);
     }
 
     @Override
-    public boolean deleteItem(String itemCode, Connection connection) throws SQLException {
-        return itemDAO.delete(itemCode, connection);
+    public boolean deleteItem(String itemCode) throws SQLException, NamingException {
+        return itemDAO.delete(itemCode);
     }
 
     @Override
-    public List<ItemDTO> getAllItems(Connection connection) throws SQLException {
+    public List<ItemDTO> getAllItems() throws SQLException, NamingException {
 
-        List<Item> items = itemDAO.get(connection);
+        List<Item> items = itemDAO.get();
         List<ItemDTO> itemDTOS = new ArrayList<>();
 
         for (Item item : items) {

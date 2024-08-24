@@ -23,25 +23,7 @@ import java.util.List;
 @WebServlet(urlPatterns = "/item")
 public class ItemController extends HttpServlet {
 
-    Connection connection;
-
     private ItemBO itemBO = new ItemBOImpl();
-
-
-
-    @Override
-    public void init() throws ServletException {
-
-        // get instance of a db connection
-        try {
-
-            connection = DbConnection.getInstance().getConnection();
-
-        } catch (NamingException | SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
 
 
     // save item
@@ -57,7 +39,7 @@ public class ItemController extends HttpServlet {
 
         try (var writer = resp.getWriter()){
 
-            if(itemBO.saveItem(itemDTO, connection)){
+            if(itemBO.saveItem(itemDTO)){
                 writer.write("Item saved successfully...");
                 resp.setStatus(HttpServletResponse.SC_CREATED);
             } else {
@@ -69,6 +51,8 @@ public class ItemController extends HttpServlet {
             resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             e.printStackTrace();
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (NamingException e) {
             e.printStackTrace();
         }
 
@@ -90,7 +74,7 @@ public class ItemController extends HttpServlet {
 
         try (var writer = resp.getWriter()){
 
-            if(itemBO.updateItem(itemCode, itemDTO, connection)){
+            if(itemBO.updateItem(itemCode, itemDTO)){
                 writer.write("Item updated successfully...");
                 resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
             } else {
@@ -101,6 +85,8 @@ public class ItemController extends HttpServlet {
             resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             e.printStackTrace();
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (NamingException e) {
             e.printStackTrace();
         }
 
@@ -115,7 +101,7 @@ public class ItemController extends HttpServlet {
 
         try(var writer = resp.getWriter()) {
 
-            if(itemBO.deleteItem(itemCode, connection)){
+            if(itemBO.deleteItem(itemCode)){
                 writer.write("Item deleted successfully...");
                 resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
             }else {
@@ -136,7 +122,7 @@ public class ItemController extends HttpServlet {
 
         try (var writer = resp.getWriter()){
 
-            List<ItemDTO> itemDTOS = itemBO.getAllItems(connection);
+            List<ItemDTO> itemDTOS = itemBO.getAllItems();
 
             resp.setContentType("application/json");
 
@@ -145,7 +131,7 @@ public class ItemController extends HttpServlet {
             // Serialization
             jsonb.toJson(itemDTOS, writer);
 
-        } catch (SQLException e) {
+        } catch (SQLException | NamingException e) {
             throw new RuntimeException(e);
         }
 
