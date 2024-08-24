@@ -49,23 +49,27 @@ public final class ItemDAOImpl implements ItemDAO {
     }
 
     @Override
-    public boolean delete(String itemCode, Connection connection) throws SQLException {
+    public boolean delete(String itemCode, Connection connection) throws SQLException, NamingException {
 
-        var ps = connection.prepareStatement(DELETE_ITEM);
+        /*var ps = connection.prepareStatement(DELETE_ITEM);
 
         ps.setString(1, itemCode);
 
-        return ps.executeUpdate() != 0;
+        return ps.executeUpdate() != 0;*/
+
+        return SQLUtil.execute(DELETE_ITEM, itemCode);
     }
 
     @Override
-    public List<Item> get(Connection connection) throws SQLException {
+    public List<Item> get(Connection connection) throws SQLException, NamingException {
+
+        /*List<Item> items = new ArrayList<>();
+
+        var ps = connection.prepareStatement(GET_ITEM);*/
+
+        ResultSet rs = SQLUtil.execute(GET_ITEM);
 
         List<Item> items = new ArrayList<>();
-
-        var ps = connection.prepareStatement(GET_ITEM);
-
-        ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
 

@@ -13,7 +13,7 @@ public interface ItemDAO {
 
     boolean update(String itemCode, Item item, Connection connection) throws SQLException, NamingException;
 
-    boolean delete(String itemCode, Connection connection) throws SQLException;
+    boolean delete(String itemCode, Connection connection) throws SQLException, NamingException;
 
-    List<Item> get(Connection connection) throws SQLException;
+    List<Item> get(Connection connection) throws SQLException, NamingException;
 }
