@@ -1,5 +1,6 @@
 package lk.ijse.thogakade_pos_backend.bo.custom;
 
+import lk.ijse.thogakade_pos_backend.bo.SuperBO;
 import lk.ijse.thogakade_pos_backend.dto.CustomerDTO;
 
 import javax.naming.NamingException;
@@ -7,7 +8,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface CustomerBO {
+public interface CustomerBO extends SuperBO {
 
     boolean saveCustomer(CustomerDTO customerDTO) throws SQLException, NamingException;
 

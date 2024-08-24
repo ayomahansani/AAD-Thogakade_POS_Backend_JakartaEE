@@ -1,12 +1,13 @@
 package lk.ijse.thogakade_pos_backend.bo.custom;
 
+import lk.ijse.thogakade_pos_backend.bo.SuperBO;
 import lk.ijse.thogakade_pos_backend.dto.ItemDTO;
 
 import javax.naming.NamingException;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface ItemBO {
+public interface ItemBO extends SuperBO {
 
     boolean saveItem(ItemDTO itemDTO) throws SQLException, NamingException;
 
