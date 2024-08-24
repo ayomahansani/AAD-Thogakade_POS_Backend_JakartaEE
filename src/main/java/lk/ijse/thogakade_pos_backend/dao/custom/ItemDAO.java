@@ -3,7 +3,6 @@ package lk.ijse.thogakade_pos_backend.dao.custom;
 import lk.ijse.thogakade_pos_backend.entity.Item;
 
 import javax.naming.NamingException;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 

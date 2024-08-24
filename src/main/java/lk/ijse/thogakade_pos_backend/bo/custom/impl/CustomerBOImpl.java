@@ -7,7 +7,6 @@ import lk.ijse.thogakade_pos_backend.dto.CustomerDTO;
 import lk.ijse.thogakade_pos_backend.entity.Customer;
 
 import javax.naming.NamingException;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;

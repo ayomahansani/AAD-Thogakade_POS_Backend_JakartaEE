@@ -5,7 +5,6 @@ import lk.ijse.thogakade_pos_backend.dao.custom.ItemDAO;
 import lk.ijse.thogakade_pos_backend.entity.Item;
 
 import javax.naming.NamingException;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;

@@ -5,7 +5,6 @@ import lk.ijse.thogakade_pos_backend.dao.custom.CustomerDAO;
 import lk.ijse.thogakade_pos_backend.entity.Customer;
 
 import javax.naming.NamingException;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -20,15 +19,6 @@ public final class CustomerDAOImpl implements CustomerDAO {
 
     @Override
     public boolean save(Customer customer) throws SQLException, NamingException {
-
-        /*var ps = connection.prepareStatement(SAVE_CUSTOMER);
-
-        ps.setString(1, customer.getId());
-        ps.setString(2, customer.getName());
-        ps.setString(3, customer.getAddress());
-        ps.setString(4, customer.getPhone());
-
-        return ps.executeUpdate() != 0;*/
 
         return SQLUtil.execute(SAVE_CUSTOMER, customer.getId(),customer.getName(), customer.getAddress(), customer.getPhone());
 
