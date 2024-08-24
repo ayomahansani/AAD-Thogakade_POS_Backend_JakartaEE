@@ -1,6 +1,5 @@
 package lk.ijse.thogakade_pos_backend.dao;
 
-import lk.ijse.thogakade_pos_backend.entity.Customer;
 import lk.ijse.thogakade_pos_backend.entity.Item;
 
 import java.sql.Connection;
