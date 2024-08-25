@@ -9,8 +9,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lk.ijse.thogakade_pos_backend.bo.BOFactory;
 import lk.ijse.thogakade_pos_backend.bo.custom.CustomerBO;
-import lk.ijse.thogakade_pos_backend.bo.custom.impl.CustomerBOImpl;
 import lk.ijse.thogakade_pos_backend.dto.CustomerDTO;
 
 import javax.naming.NamingException;
@@ -22,7 +22,7 @@ import java.util.List;
 @WebServlet(urlPatterns = "/customer")
 public class CustomerController extends HttpServlet {
 
-    private CustomerBO customerBO = new CustomerBOImpl();
+    private CustomerBO customerBO = (CustomerBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.CUSTOMER);
 
 
     // save customer

@@ -1,8 +1,8 @@
 package lk.ijse.thogakade_pos_backend.bo.custom.impl;
 
 import lk.ijse.thogakade_pos_backend.bo.custom.CustomerBO;
+import lk.ijse.thogakade_pos_backend.dao.DAOFactory;
 import lk.ijse.thogakade_pos_backend.dao.custom.CustomerDAO;
-import lk.ijse.thogakade_pos_backend.dao.custom.impl.CustomerDAOImpl;
 import lk.ijse.thogakade_pos_backend.dto.CustomerDTO;
 import lk.ijse.thogakade_pos_backend.entity.Customer;
 
@@ -13,7 +13,7 @@ import java.util.List;
 
 public class CustomerBOImpl implements CustomerBO {
 
-    private CustomerDAO customerDAO = new CustomerDAOImpl();
+    private CustomerDAO customerDAO = (CustomerDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.CUSTOMER);
 
 
     @Override

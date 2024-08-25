@@ -9,8 +9,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lk.ijse.thogakade_pos_backend.bo.BOFactory;
 import lk.ijse.thogakade_pos_backend.bo.custom.ItemBO;
-import lk.ijse.thogakade_pos_backend.bo.custom.impl.ItemBOImpl;
 import lk.ijse.thogakade_pos_backend.dto.ItemDTO;
 
 import javax.naming.NamingException;
@@ -21,7 +21,7 @@ import java.util.List;
 @WebServlet(urlPatterns = "/item")
 public class ItemController extends HttpServlet {
 
-    private ItemBO itemBO = new ItemBOImpl();
+    private ItemBO itemBO = (ItemBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.ITEM);
 
 
     // save item
