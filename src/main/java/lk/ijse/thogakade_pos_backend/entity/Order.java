@@ -4,13 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class OrderCart {
-    private String code;
-    private String name;
-    private double price;
-    private int qty;
+public class Order {
+    private String orderId;
+    private String customerId;
+    private Date orderDate;
     private double totalPrice;
 }
