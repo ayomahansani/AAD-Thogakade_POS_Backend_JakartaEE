@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -11,7 +12,7 @@ import java.util.Date;
 @Data
 public class OrderDetails {
     private String orderId;
-    private Date orderDate;
+    private LocalDate orderDate;
     private String customerId;
     private double totalPrice;
     private double discount;
