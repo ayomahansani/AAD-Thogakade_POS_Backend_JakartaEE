@@ -239,9 +239,9 @@ This API does not require authentication. Ensure that appropriate security measu
   ```json
   {
     "orderId": "O001",
-    "orderDate": '2024-08-28',
+    "orderDate": "2024-08-28",
     "customerId": "C002",
-    "itemsOfOrder": chosenItems,
+    "itemsOfOrder": "chosenItems",
     "totalPrice": 2300.00,
     "discount": 0,
     "subTotal": 2300.00,
@@ -276,9 +276,9 @@ This API does not require authentication. Ensure that appropriate security measu
 ```json
 {
   "orderId": "O001",
-  "orderDate": '2024-08-28',
+  "orderDate": "2024-08-28",
   "customerId": "C002",
-  "itemsOfOrder": chosenItems,
+  "itemsOfOrder": "chosenItems",
   "totalPrice": 2300.00,
   "discount": 0,
   "subTotal": 2300.00,
