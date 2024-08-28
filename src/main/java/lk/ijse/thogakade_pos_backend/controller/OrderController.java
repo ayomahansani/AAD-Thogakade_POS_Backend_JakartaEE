@@ -57,6 +57,7 @@ public class OrderController extends HttpServlet {
 
     }
 
+    // get all orders
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -74,5 +75,11 @@ public class OrderController extends HttpServlet {
         } catch (SQLException | NamingException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
     }
 }
