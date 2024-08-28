@@ -244,7 +244,7 @@ This API does not require authentication. Ensure that appropriate security measu
     "itemsOfOrder": "chosenItems",
     "totalPrice": 2300.00,
     "discount": 0,
-    "subTotal": 2300.00,
+    "subTotal": 2300.00
   }
   ```
 
@@ -281,7 +281,7 @@ This API does not require authentication. Ensure that appropriate security measu
   "itemsOfOrder": "chosenItems",
   "totalPrice": 2300.00,
   "discount": 0,
-  "subTotal": 2300.00,
+  "subTotal": 2300.00
 }
 ```
 
@@ -295,7 +295,7 @@ This API does not require authentication. Ensure that appropriate security measu
     "itemsOfOrder": "chosenItems",
     "totalPrice": 2300.00,
     "discount": 0,
-    "subTotal": 2300.00,
+    "subTotal": 2300.00
   },
   {
     "orderId": "O002",
@@ -304,7 +304,7 @@ This API does not require authentication. Ensure that appropriate security measu
     "itemsOfOrder": "chosenItems",
     "totalPrice": 347.00,
     "discount": 0,
-    "subTotal": 347.00,
+    "subTotal": 347.00
   }
 ]
 ```
